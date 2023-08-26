@@ -248,42 +248,60 @@ let allCountryList = {
 };
 
 document.getElementById("createResult").addEventListener('click', function() {
+
   let countryCodeInpur = document.getElementById("countryCodes").value;
+
   let countryCode = countryCodeInpur.split(/\s|,|\n/).map(item => item.trim().toUpperCase());
 
   let countryCount = {}
 
-  countryCode.forEach(val => {
-    let countryName = allCountryList[val];
- 
-    if(countryName) {
-      countryCount[countryName] = (countryCount[countryName] || 0) +1;
-    }
+  countryCode.reduce((total, val) => {
 
-  });
+    const countryName = allCountryList[val];
+
+    if (countryName) {
+      total[countryName] = (total[countryName] || 0) + 1;
+    }
+    return total;
+
+  }, countryCount);
+
+
 
 
   let resultsDiv = document.getElementById("results");
+
     resultsDiv.innerHTML = '';
 
     let table = document.createElement('table');
+
     table.innerHTML = '<tr><th>Country</th><th>Count</th></tr>';
 
     for (let country in countryCount) {
       let row = document.createElement('tr');
+
       let countryCell = document.createElement('td');
+
       let countCell = document.createElement('td');
+
       countryCell.textContent = country;
+
       countCell.textContent = countryCount[country];
+
       row.appendChild(countryCell);
+
       row.appendChild(countCell);
+
       table.appendChild(row);
+
     }
 
     resultsDiv.appendChild(table);
 
     document.getElementById("downloadBtn").style.display = 'block';
 });
+
+
 
 function ExportToExcel(type, fn, dl) {
   let elt = document.getElementById("results");
