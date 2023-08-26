@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Code</title>
+    
+    <style>
+        .cntry-code-genaretor {
+          width: 1200px;
+          margin: auto;
+        }
+        .cntry-code-genaretor h1 {
+          text-align: center;
+        }
+        .inner-box {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+        textarea#countryCodes {
+            padding: 10px 15px;
+            font-size: 22px;
+            outline: none;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+			display: block;
+			margin-bottom: 20px;
+        }
+
+
+        #results {
+          font-family: Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        #results td, #results th {
+          border: 1px solid #ddd;
+		  padding: 8px 12px;
+        }
+        
+        #results tr:nth-child(even){background-color: #f2f2f2;}
+        
+        #results tr:hover {background-color: #ddd;}
+        
+        #results th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #6d6d6d;
+          color: white;
+        }
+        .cntry-code-genaretor button {
+            border: none;
+            background: #6d6d6d;
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        </style>
+</head>
+<body>
+
+<div class="cntry-code-genaretor">
+
+  <h1>Country Code to Country Name Generater</h1>
+
+  <div class="inner-box">
+    <div class="input-box">
+      <p>Enter country codes separated by commas:</p>
+      <textarea id="countryCodes" rows="10" cols="40"  placeholder="Example country Codes Input:
+us,
+bd,
+za"></textarea>
+	<button id="createResult">Create Results</button>
+    </div>
+
+    <div class="output-box">
+      <div id="results">
+        
+      </div>
+      <br/>
+      <button id="downloadBtn" style="display: none;" onclick="ExportToExcel('xlsx')">Download File</button>
+    </div>
+  </div>
+
+</div>
+
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+    <script src="sc.js"></script>
+</body>
+</html>
